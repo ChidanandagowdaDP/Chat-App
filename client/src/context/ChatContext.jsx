@@ -25,7 +25,7 @@ export const ChatContextProvider = ({ children, user }) => {
     const newSocket = io(
       import.meta.env.MODE === "production"
         ? "https://mern-chat-socket.onrender.com"
-        : "http://localhost:3000",
+        : "https://chat-app-2unc.onrender.com",
     );
     setSocket(newSocket);
 

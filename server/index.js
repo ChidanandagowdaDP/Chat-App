@@ -19,12 +19,11 @@ connectDB();
 const app = express();
 
 app.use(express.json());
+const cors = require("cors");
 app.use(
-  cors({
-    origin:
-      process.env.NODE_ENV === "production" ? false : "http://localhost:5173",
-  })
+  cors({ origin: "https://chat-app-2unc.onrender.com", credentials: true })
 );
+
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
