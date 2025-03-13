@@ -13,8 +13,8 @@ const io = new Server(httpServer, {
   cors: {
     origin:
       process.env.NODE_ENV === "production"
-        ? "https://mern-auth-chat.onrender.com"
-        : "http://localhost:5173",
+        ? "https://real-time-chat-applicaction.netlify.app/"
+        : "https://chat-app-rm5y.onrender.com",
   },
 });
 

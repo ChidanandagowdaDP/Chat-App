@@ -20,7 +20,10 @@ const app = express();
 
 app.use(express.json());
 app.use(
-  cors({ origin: "https://chat-app-2unc.onrender.com", credentials: true })
+  cors({
+    origin: "https://real-time-chat-applicaction.netlify.app/",
+    credentials: true,
+  })
 );
 
 app.use(express.urlencoded({ extended: true }));
