@@ -19,7 +19,6 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-const cors = require("cors");
 app.use(
   cors({ origin: "https://chat-app-2unc.onrender.com", credentials: true })
 );
