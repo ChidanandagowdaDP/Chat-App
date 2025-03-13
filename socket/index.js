@@ -15,7 +15,7 @@ const httpServer = createServer((req, res) => {
 const io = new Server(httpServer, {
   cors: {
     origin: [
-      "https://real-time-chat-applicaction.netlify.app", // Corrected URL (removed trailing `/`)
+      "https://real-time-chat-app-web.netlify.app", // Corrected URL (removed trailing `/`)
       "https://chat-app-server-hstr.onrender.com",
     ],
     methods: ["GET", "POST"],

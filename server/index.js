@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://real-time-chat-applicaction.netlify.app/",
+    origin: "https://real-time-chat-app-web.netlify.app",
     credentials: true,
   })
 );
