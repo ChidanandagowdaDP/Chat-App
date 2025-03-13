@@ -7,19 +7,38 @@ export const useFetchLatestMessage = (chat) => {
   const [latestMessage, setLatestMessage] = useState(null);
 
   useEffect(() => {
+    if (!chat?._id) {
+      console.warn("Chat ID is undefined, skipping fetch.");
+      return;
+    }
+
+    let isMounted = true; // Prevent updating state if unmounted
+
     const getMessages = async () => {
-      const response = await getRequest(`${baseUrl}/messages/${chat?._id}`);
+      try {
+        const response = await getRequest(`${baseUrl}/messages/${chat._id}`);
 
-      if (response.error) {
-        return console.log("Error getting message...", response.message);
+        if (response.error) {
+          console.error("Error getting message:", response.message);
+          return;
+        }
+
+        const lastMessage = response[response.length - 1];
+
+        if (isMounted) {
+          setLatestMessage(lastMessage);
+        }
+      } catch (error) {
+        console.error("Fetch latest message failed:", error);
       }
-
-      const lastMessage = response[response?.length - 1];
-
-      setLatestMessage(lastMessage);
     };
+
     getMessages();
-  }, [newMessage, notifications]);
+
+    return () => {
+      isMounted = false; // Cleanup function to prevent state update
+    };
+  }, [chat?._id, newMessage, notifications]);
 
   return { latestMessage };
 };
