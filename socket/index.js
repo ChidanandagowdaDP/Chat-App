@@ -14,17 +14,19 @@ const httpServer = createServer((req, res) => {
 
 const io = new Server(httpServer, {
   cors: {
-    origin:
-      process.env.NODE_ENV === "production"
-        ? "https://real-time-chat-applicaction.netlify.app/"
-        : "https://chat-app-server-hstr.onrender.com",
+    origin: [
+      "https://real-time-chat-applicaction.netlify.app", // Corrected URL (removed trailing `/`)
+      "https://chat-app-server-hstr.onrender.com",
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
 let onlineUsers = [];
 
 io.on("connection", (socket) => {
-  console.log("new connection", socket.id);
+  console.log("New connection:", socket.id);
 
   socket.on("addNewUser", (userId) => {
     if (!onlineUsers.some((user) => user.userId === userId)) {
@@ -55,5 +57,5 @@ io.on("connection", (socket) => {
 
 // **Now Render can detect an open HTTP port**
 httpServer.listen(port, () => {
-  console.log(`Socket server running on port ${port}`);
+  console.log(`✅ Socket server running on port ${port}`);
 });
