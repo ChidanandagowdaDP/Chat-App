@@ -24,7 +24,7 @@ export const ChatContextProvider = ({ children, user }) => {
   useEffect(() => {
     const newSocket = io(
       import.meta.env.MODE === "production"
-        ? "https://mern-chat-socket.onrender.com"
+        ? "https://chat-app-1-rcyz.onrender.com"
         : "https://chat-app-2unc.onrender.com",
     );
     setSocket(newSocket);
